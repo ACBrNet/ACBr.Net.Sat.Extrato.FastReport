@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>E:\Programacao\ACBr\ACBr.Net\ACBr.Net.Sat.Extrato.FastReport\src\ACBr.Net.Sat.Extrato.FastReport\ExtratoFastReport.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>e:\programacao\acbr\acbr.net\acbr.net.sat.extrato.fastreport\src\acbr.net.sat.demo\frmmain.cs</string>
+      <string>e:\programacao\acbr\acbr.net\acbr.net.sat.extrato.fastreport\src\acbr.net.sat.demo\frmmain.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>e:\programacao\acbr\acbr.net\acbr.net.sat.extrato.fastreport\src\acbr.net.sat.demo\extensions.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\RFTD\AppData\Local\JetBrains\Shared\v06\DecompilerCache\decompiler\00758324-F97A-46D0-9864-2E9D7971FEDF\50\0f5188f7\ExtratoSat.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\RFTD\AppData\Local\JetBrains\Shared\v06\DecompilerCache\decompiler\F3F45BBA-751A-4D61-AD20-48CD93A4D442\41\01e4672d\CFeCanc.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>E:\Programacao\ACBr\ACBr.Net\ACBr.Net.Sat.Extrato.FastReport\src\ACBr.Net.Sat.Extrato.FastReport\Properties\AssemblyInfo.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
