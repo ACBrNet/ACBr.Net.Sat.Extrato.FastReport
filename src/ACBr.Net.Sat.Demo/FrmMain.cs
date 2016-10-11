@@ -8,6 +8,7 @@ using NLog.Windows.Forms;
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -58,8 +59,7 @@ namespace ACBr.Net.Sat.Demo
 				Extrato = new ExtratoFastReport(),
 			};
 
-			acbrSat.Extrato.MostrarPreview = true;
-
+			cmbFiltro.EnumDataSource<ExtratoFiltro>(ExtratoFiltro.Nenhum);
 			cmbAmbiente.EnumDataSource<TipoAmbiente>(TipoAmbiente.Homologacao);
 			cmbModeloSat.EnumDataSource<ModeloSat>(ModeloSat.StdCall);
 			cmbEmiRegTrib.EnumDataSource<RegTrib>(RegTrib.Normal);
@@ -214,7 +214,7 @@ namespace ACBr.Net.Sat.Demo
 			txtCodUF.Text = config.GetAppSetting("CodUF", "35");
 			nunPaginaCodigo.Value = config.GetAppSetting("PaginaCodigo", 1252M);
 			nunCaixa.Value = config.GetAppSetting("Caixa", 1M);
-			nunVersaoCFe.Value = config.GetAppSetting("VersaoCFe", 0.06M);
+			nunVersaoCFe.Value = config.GetAppSetting("VersaoCFe", 0.07M);
 			chkUTF8.Checked = config.GetAppSetting("UTF8", false);
 			chkRemoveAcentos.Checked = config.GetAppSetting("RemoveAcentos", false);
 			chkSaveEnvio.Checked = config.GetAppSetting("SaveEnvio", true);
@@ -233,6 +233,29 @@ namespace ACBr.Net.Sat.Demo
 															"111111111222222222222221111111111111122222222222222111111111111112222222222222211111111" +
 															"111111222222222222221111111111111122222222222222111111111111112222222222222211111111111" +
 															"1112222222222222211111111111111222222222222221111111111111122222222222222111111111");
+
+			//Extrato
+			var img = config.GetAppSetting("ExtratoLogo", string.Empty);
+			if (img.IsEmpty())
+			{
+				pctLogo.Image?.Dispose();
+				pctLogo.Image = null;
+
+				acbrSat.Extrato.Logo?.Dispose();
+				acbrSat.Extrato.Logo = null;
+			}
+			else
+			{
+				var imgBytes = Convert.FromBase64String(img);
+				pctLogo.Image = imgBytes.ToImage();
+				acbrSat.Extrato.Logo = pctLogo.Image;
+			}
+
+			chkPreview.Checked = config.GetAppSetting("ExtratoPreview", false);
+			chkSetup.Checked = config.GetAppSetting("ExtratoSetup", false);
+			cmbFiltro.SelectedItem = config.GetAppSetting("ExtratoFiltro", ExtratoFiltro.Nenhum);
+			txtExportacao.Text = config.GetAppSetting("ExtratoFiltroArquivo", string.Empty);
+			nudEspacoFinal.Value = config.GetAppSetting("ExtratoEspacoFinal", 0M);
 
 			MessageBox.Show(this, @"Configurações Carregada com sucesso !", @"S@T Demo");
 		}
@@ -264,6 +287,14 @@ namespace ACBr.Net.Sat.Demo
 			config.SetAppSetting("EmiRatIISQN", cmbEmiRatIISQN.SelectedItem);
 			config.SetAppSetting("IdeCNPJ", txtIdeCNPJ.Text);
 			config.SetAppSetting("SignAC", txtSignAC.Text);
+
+			//Extrato
+			config.SetAppSetting("ExtratoLogo", pctLogo.Image.ToBase64());
+			config.SetAppSetting("ExtratoPreview", chkPreview.Checked);
+			config.SetAppSetting("ExtratoSetup", chkSetup.Checked);
+			config.SetAppSetting("ExtratoFiltro", cmbFiltro.SelectedItem);
+			config.SetAppSetting("ExtratoFiltroArquivo", txtExportacao.Text);
+			config.SetAppSetting("ExtratoEspacoFinal", nudEspacoFinal.Value);
 
 			config.Save(ConfigurationSaveMode.Minimal, true);
 			if (msg) MessageBox.Show(this, @"Configurações Salva com sucesso !", @"S@T Demo");
@@ -306,7 +337,7 @@ namespace ACBr.Net.Sat.Demo
 		{
 			if (!acbrSat.Ativo) ToogleInitialize();
 			logger.Info("Comunicar certificado.");
-			var file = Helpers.OpenFiles(@"Certificado|*.cer|Arquivo Texto|*.txt");
+			var file = Helpers.OpenFile(@"Certificado|*.cer|Arquivo Texto|*.txt");
 			if (file.IsEmpty())
 			{
 				logger.Info("Comunicar certificado Cancelado.");
@@ -394,7 +425,7 @@ namespace ACBr.Net.Sat.Demo
 		private void carregarXMLToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			logger.Info("Carregar XML CFe.");
-			var file = Helpers.OpenFiles(@"CFe Xml | *.xml");
+			var file = Helpers.OpenFile(@"CFe Xml | *.xml");
 			if (file.IsEmpty())
 			{
 				logger.Info("Carregar XML CFe Cancelado.");
@@ -485,7 +516,7 @@ namespace ACBr.Net.Sat.Demo
 		private void lerXMLConfiguraçãoDeInterfaceDeRedeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			logger.Info("Carregar XML Rede.");
-			var file = Helpers.OpenFiles(@"Xml Rede | *.xml");
+			var file = Helpers.OpenFile(@"Xml Rede | *.xml");
 			if (file.IsEmpty())
 			{
 				logger.Info("Carregar XML Rede Cancelado.");
@@ -658,6 +689,33 @@ namespace ACBr.Net.Sat.Demo
 			acbrSat.SignAC = txtSignAC.Text;
 		}
 
+		private void chkPreview_CheckedChanged(object sender, EventArgs e)
+		{
+			acbrSat.Extrato.MostrarPreview = chkPreview.Checked;
+		}
+
+		private void chkSetup_CheckedChanged(object sender, EventArgs e)
+		{
+			acbrSat.Extrato.MostrarSetup = chkSetup.Checked;
+		}
+
+		private void cmbFiltro_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			acbrSat.Extrato.Filtro = (ExtratoFiltro)cmbFiltro.SelectedItem;
+			txtExportacao.Enabled = acbrSat.Extrato.Filtro != ExtratoFiltro.Nenhum;
+			btnExportacao.Enabled = acbrSat.Extrato.Filtro != ExtratoFiltro.Nenhum;
+		}
+
+		private void txtExportacao_TextChanged(object sender, EventArgs e)
+		{
+			acbrSat.Extrato.NomeArquivo = txtExportacao.Text;
+		}
+
+		private void nudEspacoFinal_ValueChanged(object sender, EventArgs e)
+		{
+			((ExtratoFastReport)acbrSat.Extrato).EspacoFinal = (float)nudEspacoFinal.Value;
+		}
+
 		#endregion ValueChanged
 
 		#region Botoes
@@ -679,9 +737,36 @@ namespace ACBr.Net.Sat.Demo
 
 		private void btnSelDll_Click(object sender, EventArgs e)
 		{
-			var file = Helpers.OpenFiles(@"Sat Library | *.dll");
-			if (!file.IsEmpty())
-				txtDllPath.Text = file;
+			var file = Helpers.OpenFile(@"Sat Library | *.dll");
+			if (file.IsEmpty()) return;
+
+			txtDllPath.Text = file;
+		}
+
+		private void carregarImagemToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var file = Helpers.OpenFile(@"Images(*.BMP; *.JPG; *.GIF,*.PNG,*.TIFF)| *.BMP; *.JPG; *.GIF; *.PNG; *.TIFF");
+			if (file.IsEmpty()) return;
+
+			var img = Image.FromFile(file);
+			pctLogo.Image = img;
+			acbrSat.Extrato.Logo = img;
+		}
+
+		private void limparLogoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			pctLogo.Image?.Dispose();
+			pctLogo.Image = null;
+
+			acbrSat.Extrato.Logo?.Dispose();
+			acbrSat.Extrato.Logo = null;
+		}
+
+		private void btnExportacao_Click(object sender, EventArgs e)
+		{
+			var extensao = acbrSat.Extrato.Filtro == ExtratoFiltro.HTML ? ".html" : ".pdf";
+			var file = Helpers.SaveFile($"ExtratoSat{extensao}", $"Extrato Sat (*{extensao}) | *{extensao}");
+			txtExportacao.Text = file;
 		}
 
 		#endregion Botoes

@@ -57,13 +57,15 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public bool DescricaoUmaLinha { get; set; }
 
+		public float EspacoFinal { get; set; }
+
 		#endregion Propriedades
 
 		#region Methods
 
 		public override void ImprimirExtrato(CFe cfe)
 		{
-			PreparaExtrato(TipoExtrato.Completo);
+			PreparaExtrato(ExtratoLayOut.Completo);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			//internalReport.Design();
 			Print();
@@ -71,7 +73,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public override void ImprimirExtratoResumido(CFe cfe)
 		{
-			PreparaExtrato(TipoExtrato.Resumido);
+			PreparaExtrato(ExtratoLayOut.Resumido);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			//internalReport.Design();
 			Print();
@@ -79,7 +81,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
 		{
-			PreparaExtrato(TipoExtrato.Cancelamento);
+			PreparaExtrato(ExtratoLayOut.Cancelamento);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
 			//internalReport.Design();
@@ -132,7 +134,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 			internalReport = null;
 		}
 
-		private void PreparaExtrato(TipoExtrato tipo)
+		private void PreparaExtrato(ExtratoLayOut tipo)
 		{
 			internalReport = new Report();
 
@@ -143,12 +145,12 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 				MemoryStream ms;
 				switch (tipo)
 				{
-					case TipoExtrato.Completo:
-					case TipoExtrato.Resumido:
+					case ExtratoLayOut.Completo:
+					case ExtratoLayOut.Resumido:
 						ms = new MemoryStream(Properties.Resources.ExtratoSat);
 						break;
 
-					case TipoExtrato.Cancelamento:
+					case ExtratoLayOut.Cancelamento:
 						ms = new MemoryStream(Properties.Resources.ExtratoSatCancelamento);
 						break;
 
@@ -164,8 +166,9 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 			}
 
 			internalReport.SetParameterValue("Logo", Logo.ToByteArray());
-			internalReport.SetParameterValue("Resumido", tipo == TipoExtrato.Resumido);
+			internalReport.SetParameterValue("IsResumido", tipo == ExtratoLayOut.Resumido);
 			internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
+			internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
 
 			internalReport.PrintSettings.Copies = NumeroCopias;
 			internalReport.PrintSettings.Printer = PrinterName;

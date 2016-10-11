@@ -6,7 +6,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 	{
 		#region Constructors
 
-		public ExtratoEventArgs(TipoExtrato tipo)
+		public ExtratoEventArgs(ExtratoLayOut tipo)
 		{
 			Tipo = tipo;
 			FilePath = string.Empty;
@@ -20,7 +20,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 		/// Retorna o tipo de arquivo necessario.
 		/// </summary>
 		/// <value>The tipo.</value>
-		public TipoExtrato Tipo { get; internal set; }
+		public ExtratoLayOut Tipo { get; internal set; }
 
 		/// <summary>
 		/// Define ou retorna o caminho para o arquivo do FastReport.

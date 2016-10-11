@@ -73,7 +73,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TipoExtrato.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="acbr.net.snk" />

@@ -1,6 +1,8 @@
 using ACBr.Net.Core.Exceptions;
+using ACBr.Net.Core.Extensions;
 using System;
 using System.Configuration;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -70,6 +72,12 @@ namespace ACBr.Net.Sat.Demo
 			{
 				return defaultValue;
 			}
+		}
+
+		public static string ToBase64(this Image image)
+		{
+			var imgBytes = image?.ToByteArray() ?? new byte[0];
+			return imgBytes.Length < 1 ? string.Empty : Convert.ToBase64String(imgBytes);
 		}
 	}
 }

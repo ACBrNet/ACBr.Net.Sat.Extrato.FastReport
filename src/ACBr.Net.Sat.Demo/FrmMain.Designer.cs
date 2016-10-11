@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
 			this.tpgLog = new System.Windows.Forms.TabPage();
 			this.rtbLog = new System.Windows.Forms.RichTextBox();
@@ -40,9 +41,9 @@
 			this.wbrXmlCancelamento = new System.Windows.Forms.WebBrowser();
 			this.tpgXmlRede = new System.Windows.Forms.TabPage();
 			this.wbrXmlRede = new System.Windows.Forms.WebBrowser();
-			this.stsStatus = new System.Windows.Forms.StatusStrip();
+			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.menuStripMain = new System.Windows.Forms.MenuStrip();
 			this.ativaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ativarSATToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.comunicarCertificadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,20 +123,35 @@
 			this.label13 = new System.Windows.Forms.Label();
 			this.tpgRede = new System.Windows.Forms.TabPage();
 			this.tpgImpressao = new System.Windows.Forms.TabPage();
+			this.groupBoxExportacao = new System.Windows.Forms.GroupBox();
+			this.cmbFiltro = new System.Windows.Forms.ComboBox();
+			this.label17 = new System.Windows.Forms.Label();
+			this.txtExportacao = new System.Windows.Forms.TextBox();
+			this.btnExportacao = new System.Windows.Forms.Button();
+			this.label16 = new System.Windows.Forms.Label();
+			this.chkSetup = new System.Windows.Forms.CheckBox();
+			this.chkPreview = new System.Windows.Forms.CheckBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.pctLogo = new System.Windows.Forms.PictureBox();
+			this.contextMenuStripImage = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.carregarImagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.limparLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.label15 = new System.Windows.Forms.Label();
 			this.cmbModeloSat = new System.Windows.Forms.ComboBox();
 			this.btnIniDesini = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.btnParamSave = new System.Windows.Forms.Button();
 			this.btnParamLoad = new System.Windows.Forms.Button();
+			this.nudEspacoFinal = new System.Windows.Forms.NumericUpDown();
+			this.label18 = new System.Windows.Forms.Label();
 			this.tpgLog.SuspendLayout();
 			this.tbcXml.SuspendLayout();
 			this.tpgXmlGerado.SuspendLayout();
 			this.tpgXmlRecebido.SuspendLayout();
 			this.tpgXmlCancelamento.SuspendLayout();
 			this.tpgXmlRede.SuspendLayout();
-			this.stsStatus.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
+			this.statusStrip.SuspendLayout();
+			this.menuStripMain.SuspendLayout();
 			this.tbcDados.SuspendLayout();
 			this.tpgConfig.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -145,7 +161,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.nunCaixa)).BeginInit();
 			this.tpgEmitente.SuspendLayout();
 			this.tpgSwHouse.SuspendLayout();
+			this.tpgImpressao.SuspendLayout();
+			this.groupBoxExportacao.SuspendLayout();
+			this.groupBox4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pctLogo)).BeginInit();
+			this.contextMenuStripImage.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudEspacoFinal)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tpgLog
@@ -263,15 +285,15 @@
 			this.wbrXmlRede.Size = new System.Drawing.Size(712, 204);
 			this.wbrXmlRede.TabIndex = 0;
 			// 
-			// stsStatus
+			// statusStrip
 			// 
-			this.stsStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-			this.stsStatus.Location = new System.Drawing.Point(0, 454);
-			this.stsStatus.Name = "stsStatus";
-			this.stsStatus.Size = new System.Drawing.Size(722, 22);
-			this.stsStatus.TabIndex = 1;
-			this.stsStatus.Text = "statusStrip1";
+			this.statusStrip.Location = new System.Drawing.Point(0, 454);
+			this.statusStrip.Name = "statusStrip";
+			this.statusStrip.Size = new System.Drawing.Size(722, 22);
+			this.statusStrip.TabIndex = 1;
+			this.statusStrip.Text = "statusStrip1";
 			// 
 			// lblStatus
 			// 
@@ -279,20 +301,20 @@
 			this.lblStatus.Size = new System.Drawing.Size(707, 17);
 			this.lblStatus.Spring = true;
 			// 
-			// menuStrip1
+			// menuStripMain
 			// 
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ativaçãoToolStripMenuItem,
             this.vendaToolStripMenuItem,
             this.cancelamentoToolStripMenuItem,
             this.consultasToolStripMenuItem,
             this.configuraçãoToolStripMenuItem,
             this.diversosToolStripMenuItem});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(722, 24);
-			this.menuStrip1.TabIndex = 2;
-			this.menuStrip1.Text = "menuStrip1";
+			this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+			this.menuStripMain.Name = "menuStripMain";
+			this.menuStripMain.Size = new System.Drawing.Size(722, 24);
+			this.menuStripMain.TabIndex = 2;
+			this.menuStripMain.Text = "menuStrip1";
 			// 
 			// ativaçãoToolStripMenuItem
 			// 
@@ -1071,6 +1093,12 @@
 			// 
 			// tpgImpressao
 			// 
+			this.tpgImpressao.Controls.Add(this.label18);
+			this.tpgImpressao.Controls.Add(this.nudEspacoFinal);
+			this.tpgImpressao.Controls.Add(this.groupBoxExportacao);
+			this.tpgImpressao.Controls.Add(this.chkSetup);
+			this.tpgImpressao.Controls.Add(this.chkPreview);
+			this.tpgImpressao.Controls.Add(this.groupBox4);
 			this.tpgImpressao.Location = new System.Drawing.Point(4, 22);
 			this.tpgImpressao.Name = "tpgImpressao";
 			this.tpgImpressao.Padding = new System.Windows.Forms.Padding(3);
@@ -1078,6 +1106,134 @@
 			this.tpgImpressao.TabIndex = 4;
 			this.tpgImpressao.Text = "Impressão";
 			this.tpgImpressao.UseVisualStyleBackColor = true;
+			// 
+			// groupBoxExportacao
+			// 
+			this.groupBoxExportacao.Controls.Add(this.cmbFiltro);
+			this.groupBoxExportacao.Controls.Add(this.label17);
+			this.groupBoxExportacao.Controls.Add(this.txtExportacao);
+			this.groupBoxExportacao.Controls.Add(this.btnExportacao);
+			this.groupBoxExportacao.Controls.Add(this.label16);
+			this.groupBoxExportacao.Location = new System.Drawing.Point(186, 45);
+			this.groupBoxExportacao.Name = "groupBoxExportacao";
+			this.groupBoxExportacao.Size = new System.Drawing.Size(390, 108);
+			this.groupBoxExportacao.TabIndex = 6;
+			this.groupBoxExportacao.TabStop = false;
+			this.groupBoxExportacao.Text = "Exportação";
+			// 
+			// cmbFiltro
+			// 
+			this.cmbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbFiltro.Location = new System.Drawing.Point(6, 42);
+			this.cmbFiltro.Name = "cmbFiltro";
+			this.cmbFiltro.Size = new System.Drawing.Size(165, 21);
+			this.cmbFiltro.TabIndex = 8;
+			this.cmbFiltro.SelectedIndexChanged += new System.EventHandler(this.cmbFiltro_SelectedIndexChanged);
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label17.Location = new System.Drawing.Point(6, 26);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(35, 13);
+			this.label17.TabIndex = 6;
+			this.label17.Text = "Filtro";
+			// 
+			// txtExportacao
+			// 
+			this.txtExportacao.Enabled = false;
+			this.txtExportacao.Location = new System.Drawing.Point(6, 82);
+			this.txtExportacao.Name = "txtExportacao";
+			this.txtExportacao.Size = new System.Drawing.Size(348, 20);
+			this.txtExportacao.TabIndex = 4;
+			this.txtExportacao.TextChanged += new System.EventHandler(this.txtExportacao_TextChanged);
+			// 
+			// btnExportacao
+			// 
+			this.btnExportacao.Enabled = false;
+			this.btnExportacao.Location = new System.Drawing.Point(360, 82);
+			this.btnExportacao.Name = "btnExportacao";
+			this.btnExportacao.Size = new System.Drawing.Size(24, 20);
+			this.btnExportacao.TabIndex = 5;
+			this.btnExportacao.Text = "...";
+			this.btnExportacao.UseVisualStyleBackColor = true;
+			this.btnExportacao.Click += new System.EventHandler(this.btnExportacao_Click);
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label16.Location = new System.Drawing.Point(6, 66);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(118, 13);
+			this.label16.TabIndex = 3;
+			this.label16.Text = "Arquivo Exportação";
+			// 
+			// chkSetup
+			// 
+			this.chkSetup.AutoSize = true;
+			this.chkSetup.Location = new System.Drawing.Point(294, 22);
+			this.chkSetup.Name = "chkSetup";
+			this.chkSetup.Size = new System.Drawing.Size(92, 17);
+			this.chkSetup.TabIndex = 2;
+			this.chkSetup.Text = "Mostrar Setup";
+			this.chkSetup.UseVisualStyleBackColor = true;
+			this.chkSetup.CheckedChanged += new System.EventHandler(this.chkSetup_CheckedChanged);
+			// 
+			// chkPreview
+			// 
+			this.chkPreview.AutoSize = true;
+			this.chkPreview.Location = new System.Drawing.Point(186, 22);
+			this.chkPreview.Name = "chkPreview";
+			this.chkPreview.Size = new System.Drawing.Size(102, 17);
+			this.chkPreview.TabIndex = 1;
+			this.chkPreview.Text = "Mostrar Preview";
+			this.chkPreview.UseVisualStyleBackColor = true;
+			this.chkPreview.CheckedChanged += new System.EventHandler(this.chkPreview_CheckedChanged);
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.pctLogo);
+			this.groupBox4.Location = new System.Drawing.Point(6, 6);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(174, 147);
+			this.groupBox4.TabIndex = 0;
+			this.groupBox4.TabStop = false;
+			this.groupBox4.Text = "Logo";
+			// 
+			// pctLogo
+			// 
+			this.pctLogo.ContextMenuStrip = this.contextMenuStripImage;
+			this.pctLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pctLogo.Location = new System.Drawing.Point(3, 16);
+			this.pctLogo.Name = "pctLogo";
+			this.pctLogo.Size = new System.Drawing.Size(168, 128);
+			this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pctLogo.TabIndex = 0;
+			this.pctLogo.TabStop = false;
+			// 
+			// contextMenuStripImage
+			// 
+			this.contextMenuStripImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.carregarImagemToolStripMenuItem,
+            this.limparLogoToolStripMenuItem});
+			this.contextMenuStripImage.Name = "contextMenuStripImage";
+			this.contextMenuStripImage.Size = new System.Drawing.Size(150, 48);
+			// 
+			// carregarImagemToolStripMenuItem
+			// 
+			this.carregarImagemToolStripMenuItem.Name = "carregarImagemToolStripMenuItem";
+			this.carregarImagemToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.carregarImagemToolStripMenuItem.Text = "Carregar Logo";
+			this.carregarImagemToolStripMenuItem.Click += new System.EventHandler(this.carregarImagemToolStripMenuItem_Click);
+			// 
+			// limparLogoToolStripMenuItem
+			// 
+			this.limparLogoToolStripMenuItem.Name = "limparLogoToolStripMenuItem";
+			this.limparLogoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.limparLogoToolStripMenuItem.Text = "Limpar Logo";
+			this.limparLogoToolStripMenuItem.Click += new System.EventHandler(this.limparLogoToolStripMenuItem_Click);
 			// 
 			// label15
 			// 
@@ -1142,6 +1298,25 @@
 			this.btnParamLoad.UseVisualStyleBackColor = true;
 			this.btnParamLoad.Click += new System.EventHandler(this.btnParamLoad_Click);
 			// 
+			// nudEspacoFinal
+			// 
+			this.nudEspacoFinal.DecimalPlaces = 2;
+			this.nudEspacoFinal.Location = new System.Drawing.Point(467, 21);
+			this.nudEspacoFinal.Name = "nudEspacoFinal";
+			this.nudEspacoFinal.Size = new System.Drawing.Size(60, 20);
+			this.nudEspacoFinal.TabIndex = 7;
+			this.nudEspacoFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.nudEspacoFinal.ValueChanged += new System.EventHandler(this.nudEspacoFinal_ValueChanged);
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(392, 23);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(68, 13);
+			this.label18.TabIndex = 8;
+			this.label18.Text = "Espaço Final";
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1152,12 +1327,12 @@
 			this.Controls.Add(this.label15);
 			this.Controls.Add(this.cmbModeloSat);
 			this.Controls.Add(this.tbcDados);
-			this.Controls.Add(this.stsStatus);
-			this.Controls.Add(this.menuStrip1);
+			this.Controls.Add(this.statusStrip);
+			this.Controls.Add(this.menuStripMain);
 			this.Controls.Add(this.tbcXml);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MainMenuStrip = this.menuStrip1;
+			this.MainMenuStrip = this.menuStripMain;
 			this.Name = "FrmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "S@T Demo";
@@ -1168,10 +1343,10 @@
 			this.tpgXmlRecebido.ResumeLayout(false);
 			this.tpgXmlCancelamento.ResumeLayout(false);
 			this.tpgXmlRede.ResumeLayout(false);
-			this.stsStatus.ResumeLayout(false);
-			this.stsStatus.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
+			this.statusStrip.ResumeLayout(false);
+			this.statusStrip.PerformLayout();
+			this.menuStripMain.ResumeLayout(false);
+			this.menuStripMain.PerformLayout();
 			this.tbcDados.ResumeLayout(false);
 			this.tpgConfig.ResumeLayout(false);
 			this.tpgConfig.PerformLayout();
@@ -1186,7 +1361,15 @@
 			this.tpgEmitente.PerformLayout();
 			this.tpgSwHouse.ResumeLayout(false);
 			this.tpgSwHouse.PerformLayout();
+			this.tpgImpressao.ResumeLayout(false);
+			this.tpgImpressao.PerformLayout();
+			this.groupBoxExportacao.ResumeLayout(false);
+			this.groupBoxExportacao.PerformLayout();
+			this.groupBox4.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pctLogo)).EndInit();
+			this.contextMenuStripImage.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.nudEspacoFinal)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1197,8 +1380,8 @@
 		private System.Windows.Forms.TabPage tpgLog;
 		private System.Windows.Forms.TabControl tbcXml;
 		private System.Windows.Forms.RichTextBox rtbLog;
-		private System.Windows.Forms.StatusStrip stsStatus;
-		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.StatusStrip statusStrip;
+		private System.Windows.Forms.MenuStrip menuStripMain;
 		private System.Windows.Forms.ToolStripMenuItem ativaçãoToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem ativarSATToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem comunicarCertificadoToolStripMenuItem;
@@ -1293,6 +1476,21 @@
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Button btnParamSave;
 		private System.Windows.Forms.Button btnParamLoad;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.PictureBox pctLogo;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStripImage;
+		private System.Windows.Forms.ToolStripMenuItem carregarImagemToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem limparLogoToolStripMenuItem;
+		private System.Windows.Forms.GroupBox groupBoxExportacao;
+		private System.Windows.Forms.ComboBox cmbFiltro;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.TextBox txtExportacao;
+		private System.Windows.Forms.Button btnExportacao;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.CheckBox chkSetup;
+		private System.Windows.Forms.CheckBox chkPreview;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.NumericUpDown nudEspacoFinal;
 	}
 }
 
