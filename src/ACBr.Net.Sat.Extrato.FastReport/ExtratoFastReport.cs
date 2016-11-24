@@ -65,7 +65,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public override void ImprimirExtrato(CFe cfe)
 		{
-			PreparaExtrato(ExtratoLayOut.Completo);
+			PreparaExtrato(ExtratoLayOut.Completo, cfe);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			//internalReport.Design();
 			Print();
@@ -73,7 +73,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public override void ImprimirExtratoResumido(CFe cfe)
 		{
-			PreparaExtrato(ExtratoLayOut.Resumido);
+			PreparaExtrato(ExtratoLayOut.Resumido, cfe);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			//internalReport.Design();
 			Print();
@@ -81,11 +81,11 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
 		public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
 		{
-			PreparaExtrato(ExtratoLayOut.Cancelamento);
+			PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
-			//internalReport.Design();
-			Print();
+			internalReport.Design();
+			//Print();
 		}
 
 		private void Print()
@@ -134,7 +134,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 			internalReport = null;
 		}
 
-		private void PreparaExtrato(ExtratoLayOut tipo)
+		private void PreparaExtrato(ExtratoLayOut tipo, CFe cfe)
 		{
 			internalReport = new Report();
 
@@ -169,6 +169,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 			internalReport.SetParameterValue("IsResumido", tipo == ExtratoLayOut.Resumido);
 			internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
 			internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
+			internalReport.SetParameterValue("Ambiente", (int?)cfe.InfCFe.Ide.TpAmb ?? 1);
 
 			internalReport.PrintSettings.Copies = NumeroCopias;
 			internalReport.PrintSettings.Printer = PrinterName;
