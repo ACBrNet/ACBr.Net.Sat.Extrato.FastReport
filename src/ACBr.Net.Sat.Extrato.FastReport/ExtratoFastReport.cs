@@ -84,8 +84,8 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 			PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
 			internalReport.RegisterData(new[] { cfe }, "CFe");
 			internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
-			internalReport.Design();
-			//Print();
+			//internalReport.Design();
+			Print();
 		}
 
 		private void Print()
