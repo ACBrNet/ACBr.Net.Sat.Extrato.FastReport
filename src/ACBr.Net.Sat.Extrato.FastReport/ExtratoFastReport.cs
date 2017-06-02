@@ -105,7 +105,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 					var pdfExport = new PDFExport
 					{
 						EmbeddingFonts = true,
-						//ImageLossless = true,
+						ImageLossless = true,
 						ShowProgress = MostrarSetup,
 						PdfCompliance = PDFExport.PdfStandard.PdfX_3,
 						OpenAfterExport = MostrarPreview
