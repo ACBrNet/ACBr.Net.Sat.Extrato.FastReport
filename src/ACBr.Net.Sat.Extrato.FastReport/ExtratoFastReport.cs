@@ -31,6 +31,7 @@
 
 using ACBr.Net.Core.Extensions;
 using ACBr.Net.Core.Logging;
+using ACBr.Net.DFe.Core.Common;
 using FastReport;
 using FastReport.Export.Html;
 using FastReport.Export.Pdf;
@@ -65,7 +66,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
         public override void ImprimirExtrato(CFe cfe)
         {
-            PreparaExtrato(ExtratoLayOut.Completo, cfe);
+            PreparaExtrato(ExtratoLayOut.Completo, cfe.InfCFe.Ide.TpAmb);
             internalReport.RegisterData(new[] { cfe }, "CFe");
 #if DEBUG
             internalReport.Design();
@@ -76,7 +77,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
         public override void ImprimirExtratoResumido(CFe cfe)
         {
-            PreparaExtrato(ExtratoLayOut.Resumido, cfe);
+            PreparaExtrato(ExtratoLayOut.Resumido, cfe.InfCFe.Ide.TpAmb);
             internalReport.RegisterData(new[] { cfe }, "CFe");
 #if DEBUG
             internalReport.Design();
@@ -85,10 +86,9 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 #endif
         }
 
-        public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
+        public override void ImprimirExtratoCancelamento(CFeCanc cFeCanc, DFeTipoAmbiente? tipoAmbiente)
         {
-            PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
-            internalReport.RegisterData(new[] { cfe }, "CFe");
+            PreparaExtrato(ExtratoLayOut.Cancelamento, tipoAmbiente);
             internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
 #if DEBUG
             internalReport.Design();
@@ -142,7 +142,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport = null;
         }
 
-        private void PreparaExtrato(ExtratoLayOut tipo, CFe cfe)
+        private void PreparaExtrato(ExtratoLayOut tipo, DFeTipoAmbiente? tipoAmbiente)
         {
             internalReport = new Report();
 
@@ -177,7 +177,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport.SetParameterValue("IsResumido", tipo == ExtratoLayOut.Resumido);
             internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
             internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
-            internalReport.SetParameterValue("Ambiente", (int?)cfe.InfCFe.Ide.TpAmb ?? 1);
+            internalReport.SetParameterValue("Ambiente", (int?)tipoAmbiente ?? 1);
 
             internalReport.PrintSettings.Copies = NumeroCopias;
             internalReport.PrintSettings.Printer = PrinterName;

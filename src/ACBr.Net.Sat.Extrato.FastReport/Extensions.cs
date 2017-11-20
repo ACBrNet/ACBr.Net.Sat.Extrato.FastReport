@@ -6,7 +6,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 	{
 		public static string Descricao(this CodigoMP codigo)
 		{
-			return codigo.GetStr(
+			return codigo.GetDescription(
 				new[] {
 					CodigoMP.Dinheiro, CodigoMP.Cheque, CodigoMP.CartaodeCredito,
 					CodigoMP.CartaodeDebito, CodigoMP.CreditoLoja, CodigoMP.ValeAlimentacao,

@@ -469,7 +469,7 @@ namespace ACBr.Net.Sat.Demo
 		private void imprimirExtratoCancelamentoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (cfeAtual.IsNull() || cfeCancAtual.IsNull()) return;
-			acbrSat.ImprimirExtratoCancelamento(cfeAtual, cfeCancAtual);
+			acbrSat.ImprimirExtratoCancelamento(cfeCancAtual, cfeAtual.InfCFe.Ide.TpAmb);
 		}
 
 		private void consultarStatusOperacionalToolStripMenuItem_Click(object sender, EventArgs e)
