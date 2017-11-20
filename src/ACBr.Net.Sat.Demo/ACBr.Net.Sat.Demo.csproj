@@ -35,14 +35,17 @@
     <ApplicationIcon>sat.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ACBr.Net.Core">
-      <HintPath>..\..\..\..\Projetos_CS\VirtualPDV\DFE\Fast\ACBr.Net.Core.dll</HintPath>
+    <Reference Include="ACBr.Net.Core, Version=1.0.1.9, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\ACBr.Net.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.DFe.Core">
-      <HintPath>..\..\..\..\Projetos_CS\VirtualPDV\DFE\Fast\ACBr.Net.DFe.Core.dll</HintPath>
+    <Reference Include="ACBr.Net.DFe.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\ACBr.Net.DFe.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.Sat">
-      <HintPath>..\..\..\..\Projetos_CS\VirtualPDV\DFE\Fast\ACBr.Net.Sat.dll</HintPath>
+    <Reference Include="ACBr.Net.Sat, Version=1.1.17308.335, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\ACBr.Net.Sat.dll</HintPath>
     </Reference>
     <Reference Include="FastReport, Version=2016.4.4.0, Culture=neutral, PublicKeyToken=417583d16d08abed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
