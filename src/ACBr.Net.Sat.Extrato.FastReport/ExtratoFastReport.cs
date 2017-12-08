@@ -1,10 +1,10 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : ACBr.Net.Sat.ExtratoFr
 // Author           : RFTD
 // Created          : 06-28-2016
 //
 // Last Modified By : RFTD
-// Last Modified On : 06-28-2016
+// Last Modified On : 11-20-2017
 // ***********************************************************************
 // <copyright file="Class1.cs" company="ACBr.Net">
 //		        		   The MIT License (MIT)
@@ -36,146 +36,147 @@ using FastReport.Export.Html;
 using FastReport.Export.Pdf;
 using System;
 using System.IO;
+using ACBr.Net.DFe.Core.Common;
 
 namespace ACBr.Net.Sat.Extrato.FastReport
 {
-    public class ExtratoFastReport : ExtratoSat, IACBrLog
+	public class ExtratoFastReport : ExtratoSat, IACBrLog
+	{
+		#region Fields
+
+		private Report internalReport;
+
+		#endregion Fields
+
+		#region Events
+
+		public event EventHandler<ExtratoEventArgs> OnGetExtrato;
+
+		#endregion Events
+
+		#region Propriedades
+
+		public bool DescricaoUmaLinha { get; set; }
+
+		public float EspacoFinal { get; set; }
+
+		#endregion Propriedades
+
+		#region Methods
+
+    public override void ImprimirExtrato(CFe cfe)
     {
-        #region Fields
+        PreparaExtrato(ExtratoLayOut.Completo, cfe);
+        internalReport.RegisterData(new[] { cfe }, "CFe");
+        Print();
+    }
 
-        private Report internalReport;
+    public override void ImprimirExtratoResumido(CFe cfe)
+    {
+        PreparaExtrato(ExtratoLayOut.Resumido, cfe);
+        internalReport.RegisterData(new[] { cfe }, "CFe");
+        Print();
+    }
 
-        #endregion Fields
+    public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
+    {
+        PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
+        internalReport.RegisterData(new[] { cfe }, "CFe");
+        internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
+        Print();
+    }
 
-        #region Events
+    private void Print()
+    {
+        internalReport.Prepare();
 
-        public event EventHandler<ExtratoEventArgs> OnGetExtrato;
-
-        #endregion Events
-
-        #region Propriedades
-
-        public bool DescricaoUmaLinha { get; set; }
-
-        public float EspacoFinal { get; set; }
-
-        #endregion Propriedades
-
-        #region Methods
-
-        public override void ImprimirExtrato(CFe cfe)
+        switch (Filtro)
         {
-            PreparaExtrato(ExtratoLayOut.Completo, cfe);
-            internalReport.RegisterData(new[] { cfe }, "CFe");
-            Print();
+            case ExtratoFiltro.Nenhum:
+                if (MostrarPreview)
+                    internalReport.Show();
+                else
+                    internalReport.Print();
+                break;
+
+            case ExtratoFiltro.PDF:
+                var pdfExport = new PDFExport
+                {
+                    EmbeddingFonts = true,
+                    ShowProgress = MostrarSetup,
+                    PdfCompliance = PDFExport.PdfStandard.PdfX_3,
+                    OpenAfterExport = MostrarPreview
+                };
+
+                internalReport.Export(pdfExport, NomeArquivo);
+                break;
+
+            case ExtratoFiltro.HTML:
+                var htmlExport = new HTMLExport
+                {
+                    Format = HTMLExportFormat.MessageHTML,
+                    EmbedPictures = true,
+                    Preview = MostrarPreview,
+                    ShowProgress = MostrarSetup
+                };
+
+                internalReport.Export(htmlExport, NomeArquivo);
+                break;
+
+            case ExtratoFiltro.Design:
+                internalReport.Design();
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
-        public override void ImprimirExtratoResumido(CFe cfe)
-        {
-            PreparaExtrato(ExtratoLayOut.Resumido, cfe);
-            internalReport.RegisterData(new[] { cfe }, "CFe");
-            Print();
-        }
+        internalReport.Dispose();
+        internalReport = null;
+    }
 
-        public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
-        {
-            PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
-            internalReport.RegisterData(new[] { cfe }, "CFe");
-            internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
-            Print();
-        }
+    private void PreparaExtrato(ExtratoLayOut tipo, CFe cfe)
+    {
+        internalReport = new Report();
 
-        private void Print()
+        var e = new ExtratoEventArgs(tipo);
+        OnGetExtrato.Raise(this, e);
+        if (e.FilePath.IsEmpty() || !File.Exists(e.FilePath))
         {
-            internalReport.Prepare();
-
-            switch (Filtro)
+            MemoryStream ms;
+            switch (tipo)
             {
-                case ExtratoFiltro.Nenhum:
-                    if (MostrarPreview)
-                        internalReport.Show();
-                    else
-                        internalReport.Print();
+                case ExtratoLayOut.Completo:
+                case ExtratoLayOut.Resumido:
+                    ms = new MemoryStream(Properties.Resources.ExtratoSat);
                     break;
 
-                case ExtratoFiltro.PDF:
-                    var pdfExport = new PDFExport
-                    {
-                        EmbeddingFonts = true,
-                        ShowProgress = MostrarSetup,
-                        PdfCompliance = PDFExport.PdfStandard.PdfX_3,
-                        OpenAfterExport = MostrarPreview
-                    };
-
-                    internalReport.Export(pdfExport, NomeArquivo);
-                    break;
-
-                case ExtratoFiltro.HTML:
-                    var htmlExport = new HTMLExport
-                    {
-                        Format = HTMLExportFormat.MessageHTML,
-                        EmbedPictures = true,
-                        Preview = MostrarPreview,
-                        ShowProgress = MostrarSetup
-                    };
-
-                    internalReport.Export(htmlExport, NomeArquivo);
-                    break;
-
-                case ExtratoFiltro.Design:
-                    internalReport.Design();
+                case ExtratoLayOut.Cancelamento:
+                    ms = new MemoryStream(Properties.Resources.ExtratoSatCancelamento);
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(tipo), tipo, null);
             }
 
-            internalReport.Dispose();
-            internalReport = null;
+            internalReport.Load(ms);
         }
-
-        private void PreparaExtrato(ExtratoLayOut tipo, CFe cfe)
+        else
         {
-            internalReport = new Report();
-
-            var e = new ExtratoEventArgs(tipo);
-            OnGetExtrato.Raise(this, e);
-            if (e.FilePath.IsEmpty() || !File.Exists(e.FilePath))
-            {
-                MemoryStream ms;
-                switch (tipo)
-                {
-                    case ExtratoLayOut.Completo:
-                    case ExtratoLayOut.Resumido:
-                        ms = new MemoryStream(Properties.Resources.ExtratoSat);
-                        break;
-
-                    case ExtratoLayOut.Cancelamento:
-                        ms = new MemoryStream(Properties.Resources.ExtratoSatCancelamento);
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(tipo), tipo, null);
-                }
-
-                internalReport.Load(ms);
-            }
-            else
-            {
-                internalReport.Load(e.FilePath);
-            }
-
-            internalReport.SetParameterValue("Logo", Logo.ToByteArray());
-            internalReport.SetParameterValue("IsResumido", tipo == ExtratoLayOut.Resumido);
-            internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
-            internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
-            internalReport.SetParameterValue("Ambiente", (int?)cfe.InfCFe.Ide.TpAmb ?? 1);
-
-            internalReport.PrintSettings.Copies = NumeroCopias;
-            internalReport.PrintSettings.Printer = PrinterName;
-            internalReport.PrintSettings.ShowDialog = MostrarSetup;
+            internalReport.Load(e.FilePath);
         }
 
-        #endregion Methods
+        internalReport.SetParameterValue("Logo", Logo.ToByteArray());
+        internalReport.SetParameterValue("IsResumido", tipo == ExtratoLayOut.Resumido);
+        internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
+        internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
+        internalReport.SetParameterValue("Ambiente", (int?)cfe.InfCFe.Ide.TpAmb ?? 1);
+
+        internalReport.PrintSettings.Copies = NumeroCopias;
+        internalReport.PrintSettings.Printer = PrinterName;
+        internalReport.PrintSettings.ShowDialog = MostrarSetup;
     }
+
+    #endregion Methods
+  }
 }

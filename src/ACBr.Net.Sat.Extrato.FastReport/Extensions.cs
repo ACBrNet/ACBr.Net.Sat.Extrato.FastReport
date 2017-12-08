@@ -2,6 +2,7 @@
 
 namespace ACBr.Net.Sat.Extrato.FastReport
 {
+
     public static class Extensions
     {
         public static string Descricao(this CodigoMP codigo)
@@ -23,4 +24,5 @@ namespace ACBr.Net.Sat.Extrato.FastReport
         }
 
     }
+
 }
