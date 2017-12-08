@@ -67,14 +67,22 @@ namespace ACBr.Net.Sat.Extrato.FastReport
         {
             PreparaExtrato(ExtratoLayOut.Completo, cfe);
             internalReport.RegisterData(new[] { cfe }, "CFe");
+#if DEBUG
+            internalReport.Design();
+#else
             Print();
-       }
+#endif
+        }
 
         public override void ImprimirExtratoResumido(CFe cfe)
         {
             PreparaExtrato(ExtratoLayOut.Resumido, cfe);
             internalReport.RegisterData(new[] { cfe }, "CFe");
+#if DEBUG
+            internalReport.Design();
+#else
             Print();
+#endif
         }
 
         public override void ImprimirExtratoCancelamento(CFe cfe, CFeCanc cFeCanc)
@@ -82,7 +90,11 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             PreparaExtrato(ExtratoLayOut.Cancelamento, cfe);
             internalReport.RegisterData(new[] { cfe }, "CFe");
             internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
+#if DEBUG
+            internalReport.Design();
+#else
             Print();
+#endif
         }
 
         private void Print()
@@ -120,10 +132,6 @@ namespace ACBr.Net.Sat.Extrato.FastReport
                     };
 
                     internalReport.Export(htmlExport, NomeArquivo);
-                    break;
-
-                case ExtratoFiltro.Design:
-                    internalReport.Design();
                     break;
 
                 default:
