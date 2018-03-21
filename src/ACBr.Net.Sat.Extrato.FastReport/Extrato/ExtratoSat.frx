@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;ACBr.Net.Core.dll&#13;&#10;ACBr.Net.DFe.Core.dll&#13;&#10;ACBr.Net.Sat.dll&#13;&#10;ACBr.Net.Sat.Extrato.FastReport.dll" StartReportEvent="_StartReport" ReportInfo.Name="Extrato Sat" ReportInfo.Author="Rafael Teno Dias" ReportInfo.Version="1.0.0.0" ReportInfo.Description="Extrato Sat completo" ReportInfo.Created="09/01/2015 11:27:10" ReportInfo.Modified="08/07/2017 19:26:34" ReportInfo.CreatorVersion="2017.1.18.0" PrintSettings.Copies="0" PrintSettings.CopyNames="Via Consumidor&#13;&#10;Via Consumidor&#13;&#10;Via do Estabelecimento" PrintSettings.ShowDialog="false">
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;ACBr.Net.Core.dll&#13;&#10;ACBr.Net.DFe.Core.dll&#13;&#10;ACBr.Net.Sat.dll&#13;&#10;ACBr.Net.Sat.Extrato.FastReport.dll" StartReportEvent="_StartReport" ReportInfo.Name="Extrato Sat" ReportInfo.Author="Rafael Teno Dias" ReportInfo.Version="1.0.0.0" ReportInfo.Description="Extrato Sat completo" ReportInfo.Created="09/01/2015 11:27:10" ReportInfo.Modified="03/20/2018 21:01:29" ReportInfo.CreatorVersion="2017.4.1.0" PrintSettings.Copies="0" PrintSettings.CopyNames="Via Consumidor&#13;&#10;Via Consumidor&#13;&#10;Via do Estabelecimento" PrintSettings.ShowDialog="false">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace FastReport
     
     private void TextNumeroExtrato_BeforePrint(object sender, EventArgs e)
     {   
-      var ambiente = (DFeTipoAmbiente)(int)Report.GetParameterValue(&quot;Ambiente&quot;);
+      var ambiente = (DFeTipoAmbiente)Report.GetParameterValue(&quot;Ambiente&quot;);
       var numeroCFe = (int)Report.GetColumnValue(&quot;CFe.InfCFe.Ide.NCFe&quot;);
       TextNumeroExtrato.Text = &quot;Extrato Nº &quot; + (ambiente == DFeTipoAmbiente.Homologacao ? &quot;000000&quot; : numeroCFe.ToString());
     }
@@ -70,7 +70,7 @@ namespace FastReport
 
     private void phbEmitenteTeste_BeforePrint(object sender, EventArgs e)
     {
-      var ambiente = (DFeTipoAmbiente)(int)Report.GetParameterValue(&quot;Ambiente&quot;);
+      var ambiente = (DFeTipoAmbiente)Report.GetParameterValue(&quot;Ambiente&quot;);
       phbEmitenteTeste.Visible = ambiente == DFeTipoAmbiente.Homologacao;
       if(phbEmitenteTeste.Visible)
       {
@@ -231,14 +231,14 @@ namespace FastReport
   }
 }</ScriptText>
   <Dictionary>
-    <BusinessObjectDataSource Name="CFe" ReferenceName="CFe" DataType="ACBr.Net.Sat.CFe[], ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" Enabled="true">
-      <Column Name="InfCFe" DataType="ACBr.Net.Sat.InfCFe, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+    <BusinessObjectDataSource Name="CFe" ReferenceName="CFe" DataType="ACBr.Net.Sat.CFe[], ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" Enabled="true">
+      <Column Name="InfCFe" DataType="ACBr.Net.Sat.InfCFe, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
         <Column Name="Id" DataType="System.String"/>
         <Column Name="Versao" DataType="System.Decimal"/>
         <Column Name="VersaoDadosEnt" DataType="System.Decimal"/>
         <Column Name="VersaoSb" DataType="System.Decimal"/>
-        <Column Name="Ide" DataType="ACBr.Net.Sat.CFeIde, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-          <Column Name="UF" DataType="System.Nullable`1[[ACBr.Net.DFe.Core.Common.DFeCodUF, ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
+        <Column Name="Ide" DataType="ACBr.Net.Sat.CFeIde, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="UF" DataType="System.Nullable`1[[ACBr.Net.DFe.Core.Common.DFeCodUF, ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
           <Column Name="CNf" DataType="System.Int32"/>
           <Column Name="Modelo" DataType="System.Int32"/>
           <Column Name="NSerieSAT" DataType="System.Int32"/>
@@ -247,17 +247,17 @@ namespace FastReport
           <Column Name="DEmi" DataType="System.DateTime"/>
           <Column Name="HEmi" DataType="System.DateTime"/>
           <Column Name="CDv" DataType="System.Int32"/>
-          <Column Name="TpAmb" DataType="System.Nullable`1[[ACBr.Net.DFe.Core.Common.DFeTipoAmbiente, ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
+          <Column Name="TpAmb" DataType="System.Nullable`1[[ACBr.Net.DFe.Core.Common.DFeTipoAmbiente, ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
           <Column Name="CNPJ" DataType="System.String"/>
           <Column Name="SignAC" DataType="System.String"/>
           <Column Name="AssinaturaQrcode" DataType="System.String"/>
           <Column Name="NumeroCaixa" DataType="System.Int32"/>
         </Column>
-        <Column Name="Emit" DataType="ACBr.Net.Sat.CFeEmit, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+        <Column Name="Emit" DataType="ACBr.Net.Sat.CFeEmit, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
           <Column Name="CNPJ" DataType="System.String"/>
           <Column Name="XNome" DataType="System.String"/>
           <Column Name="XFant" DataType="System.String"/>
-          <Column Name="EnderEmit" DataType="ACBr.Net.Sat.CFeEnderEmit, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="EnderEmit" DataType="ACBr.Net.Sat.CFeEnderEmit, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="XLgr" DataType="System.String"/>
             <Column Name="Nro" DataType="System.String"/>
             <Column Name="XCpl" DataType="System.String"/>
@@ -267,16 +267,16 @@ namespace FastReport
           </Column>
           <Column Name="IE" DataType="System.String"/>
           <Column Name="IM" DataType="System.String"/>
-          <Column Name="CRegTrib" DataType="System.Nullable`1[[ACBr.Net.Sat.RegTrib, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
-          <Column Name="CRegTribISSQN" DataType="ACBr.Net.Sat.RegTribIssqn, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
-          <Column Name="IndRatISSQN" DataType="ACBr.Net.Sat.RatIssqn, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+          <Column Name="CRegTrib" DataType="System.Nullable`1[[ACBr.Net.Sat.RegTrib, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]]"/>
+          <Column Name="CRegTribISSQN" DataType="ACBr.Net.Sat.RegTribIssqn, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+          <Column Name="IndRatISSQN" DataType="ACBr.Net.Sat.RatIssqn, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
         </Column>
-        <Column Name="Dest" DataType="ACBr.Net.Sat.CFeDest, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+        <Column Name="Dest" DataType="ACBr.Net.Sat.CFeDest, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
           <Column Name="CPF" DataType="System.String"/>
           <Column Name="CNPJ" DataType="System.String"/>
           <Column Name="Nome" DataType="System.String"/>
         </Column>
-        <Column Name="Entrega" DataType="ACBr.Net.Sat.CFeEntrega, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+        <Column Name="Entrega" DataType="ACBr.Net.Sat.CFeEntrega, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
           <Column Name="XLgr" DataType="System.String"/>
           <Column Name="Nro" DataType="System.String"/>
           <Column Name="XCpl" DataType="System.String"/>
@@ -284,9 +284,9 @@ namespace FastReport
           <Column Name="XMun" DataType="System.String"/>
           <Column Name="UF" DataType="System.String"/>
         </Column>
-        <BusinessObjectDataSource Name="BusinessObjectDataSource2" Alias="Det" DataType="ACBr.Net.Sat.CFeDetCollection, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="Det" Enabled="true">
+        <BusinessObjectDataSource Name="BusinessObjectDataSource2" Alias="Det" DataType="ACBr.Net.Sat.CFeDetCollection, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="Det" Enabled="true">
           <Column Name="NItem" DataType="System.Int32"/>
-          <Column Name="Prod" DataType="ACBr.Net.Sat.CFeDetProd, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="Prod" DataType="ACBr.Net.Sat.CFeDetProd, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="EhCombustivel" DataType="System.Boolean" BindableControl="CheckBox"/>
             <Column Name="CProd" DataType="System.String"/>
             <Column Name="CEAN" DataType="System.String"/>
@@ -298,43 +298,44 @@ namespace FastReport
             <Column Name="QCom" DataType="System.Decimal"/>
             <Column Name="VUnCom" DataType="System.Decimal"/>
             <Column Name="VProd" DataType="System.Decimal"/>
-            <Column Name="IndRegra" DataType="ACBr.Net.Sat.IndRegra, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+            <Column Name="IndRegra" DataType="ACBr.Net.Sat.IndRegra, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
             <Column Name="VDesc" DataType="System.Decimal"/>
             <Column Name="VOutro" DataType="System.Decimal"/>
             <Column Name="VItem" DataType="System.Decimal"/>
             <Column Name="VRatDesc" DataType="System.Decimal"/>
             <Column Name="VRatAcr" DataType="System.Decimal"/>
-            <BusinessObjectDataSource Name="BusinessObjectDataSource4" Alias="ObsFiscoDet" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.ProdObsFisco, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="ObsFiscoDet" Enabled="true">
+            <BusinessObjectDataSource Name="BusinessObjectDataSource4" Alias="ObsFiscoDet" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.ProdObsFisco, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="ObsFiscoDet" Enabled="true">
               <Column Name="XCampoDet" DataType="System.String"/>
               <Column Name="XTextoDet" DataType="System.String"/>
             </BusinessObjectDataSource>
+            <Column Name="Parent" Enabled="false" DataType="ACBr.Net.Sat.CFe, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
           </Column>
-          <Column Name="Imposto" DataType="ACBr.Net.Sat.CFeDetImposto, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="Imposto" DataType="ACBr.Net.Sat.CFeDetImposto, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="VItem12741" DataType="System.Decimal"/>
-            <Column Name="Imposto" DataType="ACBr.Net.Sat.Interfaces.ICFeImposto, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-              <Column Name="Icms" DataType="ACBr.Net.Sat.Interfaces.ICFeIcms, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-                <Column Name="Orig" DataType="ACBr.Net.Sat.OrigemMercadoria, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+            <Column Name="Imposto" DataType="ACBr.Net.Sat.Interfaces.ICFeImposto, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+              <Column Name="Icms" DataType="ACBr.Net.Sat.Interfaces.ICFeIcms, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+                <Column Name="Orig" DataType="ACBr.Net.Sat.OrigemMercadoria, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
                 <Column Name="Csosn" DataType="System.String"/>
               </Column>
             </Column>
-            <Column Name="Pis" DataType="ACBr.Net.Sat.ImpostoPIS, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-              <Column Name="Pis" DataType="ACBr.Net.Sat.Interfaces.ICFePis, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+            <Column Name="Pis" DataType="ACBr.Net.Sat.ImpostoPIS, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+              <Column Name="Pis" DataType="ACBr.Net.Sat.Interfaces.ICFePis, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
                 <Column Name="Cst" DataType="System.String"/>
               </Column>
             </Column>
-            <Column Name="PisSt" DataType="ACBr.Net.Sat.ImpostoPisSt, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+            <Column Name="PisSt" DataType="ACBr.Net.Sat.ImpostoPisSt, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
               <Column Name="VBc" DataType="System.Decimal"/>
               <Column Name="PPis" DataType="System.Decimal"/>
               <Column Name="QBcProd" DataType="System.Decimal"/>
               <Column Name="VAliqProd" DataType="System.Decimal"/>
               <Column Name="VPis" DataType="System.Decimal"/>
             </Column>
-            <Column Name="Cofins" DataType="ACBr.Net.Sat.ImpostoCofins, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-              <Column Name="Cofins" DataType="ACBr.Net.Sat.Interfaces.ICFeCofins, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+            <Column Name="Cofins" DataType="ACBr.Net.Sat.ImpostoCofins, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+              <Column Name="Cofins" DataType="ACBr.Net.Sat.Interfaces.ICFeCofins, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
                 <Column Name="Cst" DataType="System.String"/>
               </Column>
             </Column>
-            <Column Name="CofinsSt" DataType="ACBr.Net.Sat.ImpostoCofinsSt, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+            <Column Name="CofinsSt" DataType="ACBr.Net.Sat.ImpostoCofinsSt, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
               <Column Name="VBc" DataType="System.Decimal"/>
               <Column Name="PCofins" DataType="System.Decimal"/>
               <Column Name="QBcProd" DataType="System.Decimal"/>
@@ -343,9 +344,10 @@ namespace FastReport
             </Column>
           </Column>
           <Column Name="InfAdProd" DataType="System.String"/>
+          <Column Name="Parent" Enabled="false" DataType="ACBr.Net.Sat.CFe, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
         </BusinessObjectDataSource>
-        <Column Name="Total" DataType="ACBr.Net.Sat.CFeTotal, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-          <Column Name="ICMSTot" DataType="ACBr.Net.Sat.CFeTotalIcms, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+        <Column Name="Total" DataType="ACBr.Net.Sat.CFeTotal, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="ICMSTot" DataType="ACBr.Net.Sat.CFeTotalIcms, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="VICMS" DataType="System.Decimal"/>
             <Column Name="VProd" DataType="System.Decimal"/>
             <Column Name="VDesc" DataType="System.Decimal"/>
@@ -356,7 +358,7 @@ namespace FastReport
             <Column Name="VOutro" DataType="System.Decimal"/>
           </Column>
           <Column Name="VCFe" DataType="System.Decimal"/>
-          <Column Name="ISSQNTot" DataType="ACBr.Net.Sat.CFeTotalIssqn, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="ISSQNTot" DataType="ACBr.Net.Sat.CFeTotalIssqn, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="VBC" DataType="System.Decimal"/>
             <Column Name="VISS" DataType="System.Decimal"/>
             <Column Name="VPIS" DataType="System.Decimal"/>
@@ -364,35 +366,36 @@ namespace FastReport
             <Column Name="VPISST" DataType="System.Decimal"/>
             <Column Name="VCOFINSST" DataType="System.Decimal"/>
           </Column>
-          <Column Name="DescAcrEntr" DataType="ACBr.Net.Sat.CFeTotalDescAcr, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <Column Name="DescAcrEntr" DataType="ACBr.Net.Sat.CFeTotalDescAcr, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
             <Column Name="VDescSubtot" DataType="System.Decimal"/>
             <Column Name="VAcresSubtot" DataType="System.Decimal"/>
           </Column>
           <Column Name="VCFeLei12741" DataType="System.Decimal"/>
         </Column>
-        <Column Name="Pagto" DataType="ACBr.Net.Sat.CFePgto, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
-          <BusinessObjectDataSource Name="Pagamentos1" Alias="Pagamentos" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.CFePgtoMp, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="Pagamentos" Enabled="true">
-            <Column Name="CMp" DataType="ACBr.Net.Sat.CodigoMP, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+        <Column Name="Pagto" DataType="ACBr.Net.Sat.CFePgto, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+          <BusinessObjectDataSource Name="Pagamentos1" Alias="Pagamentos" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.CFePgtoMp, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="Pagamentos" Enabled="true">
+            <Column Name="CMp" DataType="ACBr.Net.Sat.CodigoMP, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
             <Column Name="VMp" DataType="System.Decimal"/>
             <Column Name="CAdmC" DataType="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"/>
           </BusinessObjectDataSource>
           <Column Name="VTroco" DataType="System.Decimal"/>
         </Column>
-        <Column Name="InfAdic" DataType="ACBr.Net.Sat.CFeInfAdic, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
+        <Column Name="InfAdic" DataType="ACBr.Net.Sat.CFeInfAdic, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6">
           <Column Name="InfCpl" DataType="System.String"/>
-          <BusinessObjectDataSource Name="BusinessObjectDataSource5" Alias="ObsFisco" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.CFeObsFisco, ACBr.Net.Sat, Version=1.1.17202.41, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="ObsFisco" Enabled="true">
+          <BusinessObjectDataSource Name="BusinessObjectDataSource5" Alias="ObsFisco" DataType="ACBr.Net.DFe.Core.Collection.DFeCollection`1[[ACBr.Net.Sat.CFeObsFisco, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6]], ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6" PropName="ObsFisco" Enabled="true">
             <Column Name="XCampo" DataType="System.String"/>
             <Column Name="XTexto" DataType="System.String"/>
           </BusinessObjectDataSource>
         </Column>
+        <Column Name="Parent" Enabled="false" DataType="ACBr.Net.Sat.CFe, ACBr.Net.Sat, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
       </Column>
-      <Column Name="Signature" Enabled="false" DataType="ACBr.Net.DFe.Core.Document.DFeSignature, ACBr.Net.DFe.Core, Version=1.0.2.4, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
+      <Column Name="Signature" Enabled="false" DataType="ACBr.Net.DFe.Core.Document.DFeSignature, ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
     </BusinessObjectDataSource>
     <Parameter Name="IsOneLine" DataType="System.Boolean"/>
     <Parameter Name="Logo" DataType="System.Byte[]"/>
     <Parameter Name="IsResumido" DataType="System.Boolean"/>
     <Parameter Name="EspacoFinal" DataType="System.Single"/>
-    <Parameter Name="Ambiente" DataType="System.Int32"/>
+    <Parameter Name="Ambiente" DataType="ACBr.Net.DFe.Core.Common.DFeTipoAmbiente, ACBr.Net.DFe.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="79" LeftMargin="4.5" TopMargin="0" RightMargin="4.5" BottomMargin="1" FirstPageSource="15" OtherPagesSource="15" UnlimitedHeight="true">
     <ReportTitleBand Name="rtbTitulo" Width="264.6" Height="85.8" BeforePrintEvent="rtbTitulo_BeforePrint">
