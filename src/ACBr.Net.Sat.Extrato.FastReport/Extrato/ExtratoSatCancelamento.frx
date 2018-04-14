@@ -39,7 +39,7 @@ namespace FastReport
     
     private void TextNumeroExtrato_BeforePrint(object sender, EventArgs e)
     {   
-      var ambiente = (DFeTipoAmbiente)(int)Report.GetParameterValue(&quot;Ambiente&quot;);
+      var ambiente = (DFeTipoAmbiente)Report.GetParameterValue(&quot;Ambiente&quot;);
       var numeroCFe = (int)Report.GetColumnValue(&quot;CFeCanc.InfCFe.Ide.NCFe&quot;);
       TextNumeroExtrato.Text = &quot;Extrato Nº &quot; + (ambiente == DFeTipoAmbiente.Homologacao ? &quot;000000&quot; : numeroCFe.ToString());
     }
@@ -68,7 +68,7 @@ namespace FastReport
 
     private void phbEmitenteTeste_BeforePrint(object sender, EventArgs e)
     {
-      var ambiente = (DFeTipoAmbiente)(int)Report.GetParameterValue(&quot;Ambiente&quot;);
+      var ambiente = (DFeTipoAmbiente)Report.GetParameterValue(&quot;Ambiente&quot;);
       phbEmitenteTeste.Visible = ambiente == DFeTipoAmbiente.Homologacao;
     }  
 
