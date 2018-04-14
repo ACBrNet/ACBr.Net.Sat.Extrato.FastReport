@@ -68,7 +68,7 @@ namespace FastReport
 
     private void phbEmitenteTeste_BeforePrint(object sender, EventArgs e)
     {
-      var ambiente = (DFeTipoAmbiente)(int)Report.GetParameterValue(&quot;Ambiente&quot;);
+      var ambiente = (DFeTipoAmbiente)Report.GetParameterValue(&quot;Ambiente&quot;);
       phbEmitenteTeste.Visible = ambiente == DFeTipoAmbiente.Homologacao;
     }  
 
