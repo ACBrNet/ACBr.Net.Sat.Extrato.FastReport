@@ -39,17 +39,17 @@
     <AssemblyOriginatorKeyFile>acbr.net.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ACBr.Net.Core, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Core.1.2.1\lib\net452\ACBr.Net.Core.dll</HintPath>
+    <Reference Include="ACBr.Net.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.Core.1.2.2\lib\net452\ACBr.Net.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.DFe.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.DFe.Core.1.2.2\lib\net452\ACBr.Net.DFe.Core.dll</HintPath>
+    <Reference Include="ACBr.Net.DFe.Core, Version=1.2.3.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.DFe.Core.1.2.3\lib\net452\ACBr.Net.DFe.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.Integrador, Version=1.0.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Integrador.1.0.1\lib\net452\ACBr.Net.Integrador.dll</HintPath>
+    <Reference Include="ACBr.Net.Integrador, Version=1.0.2.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.Integrador.1.0.2\lib\net452\ACBr.Net.Integrador.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.Sat, Version=1.2.0.1, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Sat.1.2.0.1\lib\net452\ACBr.Net.Sat.dll</HintPath>
+    <Reference Include="ACBr.Net.Sat, Version=1.2.1.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.Sat.1.2.1\lib\net452\ACBr.Net.Sat.dll</HintPath>
     </Reference>
     <Reference Include="FastReport">
       <HintPath>..\..\..\..\..\Components\NetFramework\FrNet\Framework 4.0\FastReport.dll</HintPath>
@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="acbr.net.snk" />
+    <None Include="app.config" />
     <None Include="Extrato\ExtratoSat.frx" />
     <None Include="Extrato\ExtratoSatCancelamento.frx" />
     <None Include="packages.config" />
