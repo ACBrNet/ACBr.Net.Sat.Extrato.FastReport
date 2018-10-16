@@ -1,10 +1,10 @@
 // ***********************************************************************
-// Assembly         : ACBr.Net.Sat.ExtratoFr
+// Assembly         : ACBr.Net.Sat.Extrato.FastReport
 // Author           : RFTD
 // Created          : 06-28-2016
 //
 // Last Modified By : RFTD
-// Last Modified On : 11-20-2017
+// Last Modified On : 10-26-2018
 // ***********************************************************************
 // <copyright file="Class1.cs" company="ACBr.Net">
 //		        		   The MIT License (MIT)
@@ -30,7 +30,6 @@
 // ***********************************************************************
 
 using ACBr.Net.Core.Extensions;
-using ACBr.Net.Core.Logging;
 using FastReport;
 using FastReport.Export.Html;
 using FastReport.Export.Pdf;
@@ -42,7 +41,7 @@ using ACBr.Net.DFe.Core.Common;
 namespace ACBr.Net.Sat.Extrato.FastReport
 {
     [ToolboxBitmap(typeof(ExtratoFastReport), "ACBr.Net.Sat.Extrato.FastReport.ExtratoFastReport")]
-    public sealed class ExtratoFastReport : ExtratoSat, IACBrLog
+    public sealed class ExtratoFastReport : ExtratoSat
     {
         #region Fields
 
@@ -61,6 +60,8 @@ namespace ACBr.Net.Sat.Extrato.FastReport
         public bool DescricaoUmaLinha { get; set; }
 
         public float EspacoFinal { get; set; }
+
+        public bool ShowDesign { get; set; }
 
         #endregion Propriedades
 
@@ -91,45 +92,48 @@ namespace ACBr.Net.Sat.Extrato.FastReport
         {
             internalReport.Prepare();
 
-            switch (Filtro)
+            if (ShowDesign)
             {
-                case ExtratoFiltro.Nenhum:
-                    if (MostrarPreview)
-                        internalReport.Show();
-                    else
-                        internalReport.Print();
-                    break;
+                internalReport.Design();
+            }
+            else
+            {
+                switch (Filtro)
+                {
+                    case FiltroDFeReport.Nenhum:
+                        if (MostrarPreview)
+                            internalReport.Show();
+                        else
+                            internalReport.Print();
+                        break;
 
-                case ExtratoFiltro.PDF:
-                    var pdfExport = new PDFExport
-                    {
-                        EmbeddingFonts = true,
-                        ShowProgress = MostrarSetup,
-                        PdfCompliance = PDFExport.PdfStandard.PdfA_3b,
-                        OpenAfterExport = MostrarPreview
-                    };
+                    case FiltroDFeReport.PDF:
+                        var pdfExport = new PDFExport
+                        {
+                            EmbeddingFonts = true,
+                            ShowProgress = MostrarSetup,
+                            PdfCompliance = PDFExport.PdfStandard.PdfA_3b,
+                            OpenAfterExport = MostrarPreview
+                        };
 
-                    internalReport.Export(pdfExport, NomeArquivo);
-                    break;
+                        internalReport.Export(pdfExport, NomeArquivo);
+                        break;
 
-                case ExtratoFiltro.HTML:
-                    var htmlExport = new HTMLExport
-                    {
-                        Format = HTMLExportFormat.MessageHTML,
-                        EmbedPictures = true,
-                        Preview = MostrarPreview,
-                        ShowProgress = MostrarSetup
-                    };
+                    case FiltroDFeReport.HTML:
+                        var htmlExport = new HTMLExport
+                        {
+                            Format = HTMLExportFormat.MessageHTML,
+                            EmbedPictures = true,
+                            Preview = MostrarPreview,
+                            ShowProgress = MostrarSetup
+                        };
 
-                    internalReport.Export(htmlExport, NomeArquivo);
-                    break;
+                        internalReport.Export(htmlExport, NomeArquivo);
+                        break;
 
-                case ExtratoFiltro.Design:
-                    internalReport.Design();
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException();
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
 
             internalReport.Dispose();
