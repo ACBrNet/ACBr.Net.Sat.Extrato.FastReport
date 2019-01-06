@@ -144,6 +144,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnParamSave = new System.Windows.Forms.Button();
             this.btnParamLoad = new System.Windows.Forms.Button();
+            this.chkDesign = new System.Windows.Forms.CheckBox();
             this.tpgLog.SuspendLayout();
             this.tbcXml.SuspendLayout();
             this.tpgXmlGerado.SuspendLayout();
@@ -1093,6 +1094,7 @@
             // 
             // tpgImpressao
             // 
+            this.tpgImpressao.Controls.Add(this.chkDesign);
             this.tpgImpressao.Controls.Add(this.label18);
             this.tpgImpressao.Controls.Add(this.nudEspacoFinal);
             this.tpgImpressao.Controls.Add(this.groupBoxExportacao);
@@ -1110,7 +1112,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(392, 23);
+            this.label18.Location = new System.Drawing.Point(442, 24);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(68, 13);
             this.label18.TabIndex = 8;
@@ -1119,7 +1121,7 @@
             // nudEspacoFinal
             // 
             this.nudEspacoFinal.DecimalPlaces = 2;
-            this.nudEspacoFinal.Location = new System.Drawing.Point(467, 21);
+            this.nudEspacoFinal.Location = new System.Drawing.Point(516, 22);
             this.nudEspacoFinal.Name = "nudEspacoFinal";
             this.nudEspacoFinal.Size = new System.Drawing.Size(60, 20);
             this.nudEspacoFinal.TabIndex = 7;
@@ -1133,9 +1135,9 @@
             this.groupBoxExportacao.Controls.Add(this.txtExportacao);
             this.groupBoxExportacao.Controls.Add(this.btnExportacao);
             this.groupBoxExportacao.Controls.Add(this.label16);
-            this.groupBoxExportacao.Location = new System.Drawing.Point(186, 45);
+            this.groupBoxExportacao.Location = new System.Drawing.Point(171, 45);
             this.groupBoxExportacao.Name = "groupBoxExportacao";
-            this.groupBoxExportacao.Size = new System.Drawing.Size(390, 108);
+            this.groupBoxExportacao.Size = new System.Drawing.Size(405, 108);
             this.groupBoxExportacao.TabIndex = 6;
             this.groupBoxExportacao.TabStop = false;
             this.groupBoxExportacao.Text = "Exportação";
@@ -1192,7 +1194,7 @@
             // chkSetup
             // 
             this.chkSetup.AutoSize = true;
-            this.chkSetup.Location = new System.Drawing.Point(294, 22);
+            this.chkSetup.Location = new System.Drawing.Point(279, 22);
             this.chkSetup.Name = "chkSetup";
             this.chkSetup.Size = new System.Drawing.Size(92, 17);
             this.chkSetup.TabIndex = 2;
@@ -1203,7 +1205,7 @@
             // chkPreview
             // 
             this.chkPreview.AutoSize = true;
-            this.chkPreview.Location = new System.Drawing.Point(186, 22);
+            this.chkPreview.Location = new System.Drawing.Point(171, 22);
             this.chkPreview.Name = "chkPreview";
             this.chkPreview.Size = new System.Drawing.Size(102, 17);
             this.chkPreview.TabIndex = 1;
@@ -1216,18 +1218,19 @@
             this.groupBox4.Controls.Add(this.pctLogo);
             this.groupBox4.Location = new System.Drawing.Point(6, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(174, 147);
+            this.groupBox4.Size = new System.Drawing.Size(159, 147);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Logo";
             // 
             // pctLogo
             // 
+            this.pctLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pctLogo.ContextMenuStrip = this.contextMenuStripImage;
             this.pctLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pctLogo.Location = new System.Drawing.Point(3, 16);
             this.pctLogo.Name = "pctLogo";
-            this.pctLogo.Size = new System.Drawing.Size(168, 128);
+            this.pctLogo.Size = new System.Drawing.Size(153, 128);
             this.pctLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pctLogo.TabIndex = 0;
             this.pctLogo.TabStop = false;
@@ -1316,6 +1319,17 @@
             this.btnParamLoad.Text = "Ler";
             this.btnParamLoad.UseVisualStyleBackColor = true;
             this.btnParamLoad.Click += new System.EventHandler(this.btnParamLoad_Click);
+            // 
+            // chkDesign
+            // 
+            this.chkDesign.AutoSize = true;
+            this.chkDesign.Location = new System.Drawing.Point(377, 22);
+            this.chkDesign.Name = "chkDesign";
+            this.chkDesign.Size = new System.Drawing.Size(59, 17);
+            this.chkDesign.TabIndex = 9;
+            this.chkDesign.Text = "Design";
+            this.chkDesign.UseVisualStyleBackColor = true;
+            this.chkDesign.CheckedChanged += new System.EventHandler(this.chkDesign_CheckedChanged);
             // 
             // FrmMain
             // 
@@ -1491,6 +1505,7 @@
 		private System.Windows.Forms.CheckBox chkPreview;
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.NumericUpDown nudEspacoFinal;
-	}
+        private System.Windows.Forms.CheckBox chkDesign;
+    }
 }
 

@@ -59,7 +59,7 @@ namespace ACBr.Net.Sat.Demo
                 Extrato = new ExtratoFastReport(),
             };
 
-            cmbFiltro.EnumDataSource<ExtratoFiltro>(ExtratoFiltro.Nenhum);
+            cmbFiltro.EnumDataSource<FiltroDFeReport>(FiltroDFeReport.Nenhum);
             cmbAmbiente.EnumDataSource<DFeTipoAmbiente>(DFeTipoAmbiente.Homologacao);
             cmbModeloSat.EnumDataSource<ModeloSat>(ModeloSat.StdCall);
             cmbEmiRegTrib.EnumDataSource<RegTrib>(RegTrib.Normal);
@@ -132,9 +132,11 @@ namespace ACBr.Net.Sat.Demo
                 det.Prod.IndRegra = IndRegra.Truncamento;
                 det.Prod.VDesc = i != 1 ? 1 : 0;
 
-                var obs = new ProdObsFisco();
-                obs.XCampoDet = "campo";
-                obs.XTextoDet = "texto";
+                var obs = new ProdObsFisco
+                {
+                    XCampoDet = "campo",
+                    XTextoDet = "texto"
+                };
                 det.Prod.ObsFiscoDet.Add(obs);
 
                 var totalItem = det.Prod.QCom * det.Prod.VUnCom;
@@ -253,7 +255,8 @@ namespace ACBr.Net.Sat.Demo
 
             chkPreview.Checked = config.GetAppSetting("ExtratoPreview", false);
             chkSetup.Checked = config.GetAppSetting("ExtratoSetup", false);
-            cmbFiltro.SelectedItem = config.GetAppSetting("ExtratoFiltro", ExtratoFiltro.Nenhum);
+            chkDesign.Checked = config.GetAppSetting("ExtratoDesign", false);
+            cmbFiltro.SelectedItem = config.GetAppSetting("ExtratoFiltro", FiltroDFeReport.Nenhum);
             txtExportacao.Text = config.GetAppSetting("ExtratoFiltroArquivo", string.Empty);
             nudEspacoFinal.Value = config.GetAppSetting("ExtratoEspacoFinal", 0M);
 
@@ -291,6 +294,7 @@ namespace ACBr.Net.Sat.Demo
             //Extrato
             config.SetAppSetting("ExtratoLogo", pctLogo.Image.ToBase64());
             config.SetAppSetting("ExtratoPreview", chkPreview.Checked);
+            config.SetAppSetting("ExtratoDesign", chkDesign.Checked);
             config.SetAppSetting("ExtratoSetup", chkSetup.Checked);
             config.SetAppSetting("ExtratoFiltro", cmbFiltro.SelectedItem);
             config.SetAppSetting("ExtratoFiltroArquivo", txtExportacao.Text);
@@ -699,11 +703,17 @@ namespace ACBr.Net.Sat.Demo
             acbrSat.Extrato.MostrarSetup = chkSetup.Checked;
         }
 
+        private void chkDesign_CheckedChanged(object sender, EventArgs e)
+        {
+            ((ExtratoFastReport)acbrSat.Extrato).ShowDesign = chkDesign.Checked;
+            cmbFiltro.Enabled = !chkDesign.Checked;
+        }
+
         private void cmbFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            acbrSat.Extrato.Filtro = (ExtratoFiltro)cmbFiltro.SelectedItem;
-            txtExportacao.Enabled = !acbrSat.Extrato.Filtro.IsIn(ExtratoFiltro.Nenhum, ExtratoFiltro.Design);
-            btnExportacao.Enabled = !acbrSat.Extrato.Filtro.IsIn(ExtratoFiltro.Nenhum, ExtratoFiltro.Design);
+            acbrSat.Extrato.Filtro = (FiltroDFeReport)cmbFiltro.SelectedItem;
+            txtExportacao.Enabled = acbrSat.Extrato.Filtro != FiltroDFeReport.Nenhum && !((ExtratoFastReport)acbrSat.Extrato).ShowDesign;
+            btnExportacao.Enabled = acbrSat.Extrato.Filtro != FiltroDFeReport.Nenhum && !((ExtratoFastReport)acbrSat.Extrato).ShowDesign;
         }
 
         private void txtExportacao_TextChanged(object sender, EventArgs e)
@@ -764,7 +774,7 @@ namespace ACBr.Net.Sat.Demo
 
         private void btnExportacao_Click(object sender, EventArgs e)
         {
-            var extensao = acbrSat.Extrato.Filtro == ExtratoFiltro.HTML ? ".html" : ".pdf";
+            var extensao = acbrSat.Extrato.Filtro == FiltroDFeReport.HTML ? ".html" : ".pdf";
             var file = Helpers.SaveFile($"ExtratoSat", $"Extrato Sat (*{extensao}) | *{extensao}");
             txtExportacao.Text = file;
         }
