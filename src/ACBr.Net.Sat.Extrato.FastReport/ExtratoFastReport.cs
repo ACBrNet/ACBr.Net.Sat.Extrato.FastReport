@@ -69,26 +69,26 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
         public override void ImprimirExtrato(CFe cfe)
         {
-            PreparaExtrato(ExtratoLayOut.Completo, cfe.InfCFe.Ide.TpAmb ?? DFeTipoAmbiente.Homologacao);
+            PrepararImpressao(ExtratoLayOut.Completo, cfe.InfCFe.Ide.TpAmb ?? DFeTipoAmbiente.Homologacao);
             internalReport.RegisterData(new[] { cfe }, "CFe");
-            Print();
+            Imprimir();
         }
 
         public override void ImprimirExtratoResumido(CFe cfe)
         {
-            PreparaExtrato(ExtratoLayOut.Resumido, cfe.InfCFe.Ide.TpAmb ?? DFeTipoAmbiente.Homologacao);
+            PrepararImpressao(ExtratoLayOut.Resumido, cfe.InfCFe.Ide.TpAmb ?? DFeTipoAmbiente.Homologacao);
             internalReport.RegisterData(new[] { cfe }, "CFe");
-            Print();
+            Imprimir();
         }
 
         public override void ImprimirExtratoCancelamento(CFeCanc cFeCanc, DFeTipoAmbiente ambiente)
         {
-            PreparaExtrato(ExtratoLayOut.Cancelamento, ambiente);
+            PrepararImpressao(ExtratoLayOut.Cancelamento, ambiente);
             internalReport.RegisterData(new[] { cFeCanc }, "CFeCanc");
-            Print();
+            Imprimir();
         }
 
-        private void Print()
+        private void Imprimir()
         {
             internalReport.Prepare();
 
@@ -140,7 +140,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport = null;
         }
 
-        private void PreparaExtrato(ExtratoLayOut tipo, DFeTipoAmbiente ambiente)
+        private void PrepararImpressao(ExtratoLayOut tipo, DFeTipoAmbiente ambiente)
         {
             internalReport = new Report();
 
@@ -176,9 +176,11 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
             internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
             internalReport.SetParameterValue("Ambiente", ambiente);
+            internalReport.SetParameterValue("LogoLateral", LogoLateral);
+            internalReport.SetParameterValue("QrCodeLateral", QrCodeLateral);
 
             internalReport.PrintSettings.Copies = NumeroCopias;
-            internalReport.PrintSettings.Printer = PrinterName;
+            internalReport.PrintSettings.Printer = Impressora;
             internalReport.PrintSettings.ShowDialog = MostrarSetup;
         }
 
