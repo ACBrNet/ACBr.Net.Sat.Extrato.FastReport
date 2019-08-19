@@ -176,8 +176,8 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
             internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
             internalReport.SetParameterValue("Ambiente", ambiente);
-            internalReport.SetParameterValue("LogoLateral", LogoLateral);
-            internalReport.SetParameterValue("QrCodeLateral", QrCodeLateral);
+            //internalReport.SetParameterValue("LogoLateral", LogoLateral);
+            //internalReport.SetParameterValue("QrCodeLateral", QrCodeLateral);
 
             internalReport.PrintSettings.Copies = NumeroCopias;
             internalReport.PrintSettings.Printer = Impressora;

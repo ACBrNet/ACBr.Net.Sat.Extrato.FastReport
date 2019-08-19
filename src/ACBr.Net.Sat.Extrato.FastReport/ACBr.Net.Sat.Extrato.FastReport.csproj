@@ -45,11 +45,11 @@
     <Reference Include="ACBr.Net.DFe.Core, Version=1.2.4.1, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
       <HintPath>..\packages\ACBr.Net.DFe.Core.1.2.4.1\lib\net452\ACBr.Net.DFe.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.Integrador, Version=1.0.3.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Integrador.1.0.3\lib\net452\ACBr.Net.Integrador.dll</HintPath>
+    <Reference Include="ACBr.Net.Integrador, Version=1.2.0.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.Integrador.1.2.0\lib\net452\ACBr.Net.Integrador.dll</HintPath>
     </Reference>
-    <Reference Include="ACBr.Net.Sat, Version=1.2.4.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Sat.1.2.4\lib\net452\ACBr.Net.Sat.dll</HintPath>
+    <Reference Include="ACBr.Net.Sat, Version=1.2.6.1, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\ACBr.Net.Sat.1.2.6.1\lib\net452\ACBr.Net.Sat.dll</HintPath>
     </Reference>
     <Reference Include="FastReport">
       <HintPath>..\..\..\..\..\Components\NetFramework\FrNet\Framework 4.0\FastReport.dll</HintPath>
