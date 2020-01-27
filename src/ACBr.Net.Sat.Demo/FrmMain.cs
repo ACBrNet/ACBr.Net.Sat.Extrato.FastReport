@@ -723,7 +723,7 @@ namespace ACBr.Net.Sat.Demo
 
         private void nudEspacoFinal_ValueChanged(object sender, EventArgs e)
         {
-            ((ExtratoFastReport)acbrSat.Extrato).EspacoFinal = (float)nudEspacoFinal.Value;
+            ((ExtratoFastReport)acbrSat.Extrato).EspacoFinal = nudEspacoFinal.Value;
         }
 
         #endregion ValueChanged
