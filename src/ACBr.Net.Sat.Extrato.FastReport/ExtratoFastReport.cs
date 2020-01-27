@@ -59,7 +59,7 @@ namespace ACBr.Net.Sat.Extrato.FastReport
 
         public bool DescricaoUmaLinha { get; set; }
 
-        public float EspacoFinal { get; set; }
+        public decimal EspacoFinal { get; set; }
 
         public bool ShowDesign { get; set; }
 
@@ -176,8 +176,6 @@ namespace ACBr.Net.Sat.Extrato.FastReport
             internalReport.SetParameterValue("IsOneLine", DescricaoUmaLinha);
             internalReport.SetParameterValue("EspacoFinal", EspacoFinal);
             internalReport.SetParameterValue("Ambiente", ambiente);
-            internalReport.SetParameterValue("LogoLateral", LogoLateral);
-            internalReport.SetParameterValue("QrCodeLateral", QrCodeLateral);
 
             internalReport.PrintSettings.Copies = NumeroCopias;
             internalReport.PrintSettings.Printer = Impressora;
