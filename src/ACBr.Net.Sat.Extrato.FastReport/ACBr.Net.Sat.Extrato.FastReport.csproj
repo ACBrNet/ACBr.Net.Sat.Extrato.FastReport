@@ -39,18 +39,6 @@
     <AssemblyOriginatorKeyFile>acbr.net.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ACBr.Net.Core, Version=1.2.4.0, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Core.1.2.4\lib\net452\ACBr.Net.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="ACBr.Net.DFe.Core, Version=1.2.5.6, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.DFe.Core.1.2.5.6\lib\net452\ACBr.Net.DFe.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="ACBr.Net.Integrador, Version=1.2.0.2, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Integrador.1.2.0.2\lib\net452\ACBr.Net.Integrador.dll</HintPath>
-    </Reference>
-    <Reference Include="ACBr.Net.Sat, Version=1.2.6.3, Culture=neutral, PublicKeyToken=d3bb9130f8b775a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\ACBr.Net.Sat.1.2.6.3\lib\net452\ACBr.Net.Sat.dll</HintPath>
-    </Reference>
     <Reference Include="FastReport">
       <HintPath>..\..\..\..\..\Components\NetFramework\FrNet\Framework 4.0\FastReport.dll</HintPath>
     </Reference>
@@ -85,9 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="acbr.net.snk" />
+    <None Include="app.config" />
     <None Include="Extrato\ExtratoSat.frx" />
     <None Include="Extrato\ExtratoSatCancelamento.frx" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -97,6 +85,20 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ExtratoFastReport.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ACBr.Net.Core">
+      <Version>1.2.4</Version>
+    </PackageReference>
+    <PackageReference Include="ACBr.Net.DFe.Core">
+      <Version>1.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="ACBr.Net.Integrador">
+      <Version>1.2.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="ACBr.Net.Sat">
+      <Version>1.2.6.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
