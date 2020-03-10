@@ -87,16 +87,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ACBr.Net.Core">
-      <Version>1.2.4</Version>
+      <Version>1.2.4.1</Version>
     </PackageReference>
     <PackageReference Include="ACBr.Net.DFe.Core">
-      <Version>1.2.6.1</Version>
+      <Version>1.2.7.1</Version>
     </PackageReference>
     <PackageReference Include="ACBr.Net.Integrador">
-      <Version>1.2.0.4</Version>
+      <Version>1.2.0.6</Version>
     </PackageReference>
     <PackageReference Include="ACBr.Net.Sat">
-      <Version>1.2.6.5</Version>
+      <Version>1.2.7.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
