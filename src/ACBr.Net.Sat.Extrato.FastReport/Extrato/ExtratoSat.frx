@@ -205,7 +205,7 @@ namespace FastReport
       var dtEmissao = (DateTime)Report.GetColumnValue(&quot;CFe.InfCFe.Ide.DhEmissao&quot;);
       var valor = (Decimal)Report.GetColumnValue(&quot;CFe.InfCFe.Total.VCFe&quot;);
       var qrCode = (string)Report.GetColumnValue(&quot;CFe.InfCFe.Ide.AssinaturaQrcode&quot;);
-      var espacoFinal = (float)Report.GetParameterValue(&quot;EspacoFinal&quot;);
+      var espacoFinal = (float)((Decimal)Report.GetParameterValue(&quot;EspacoFinal&quot;));
       var chave = id.OnlyNumbers();
       
       TextChaveAcesso.Text = Regex.Replace(chave, &quot;.{4}&quot;, &quot;$0 &quot;);  
